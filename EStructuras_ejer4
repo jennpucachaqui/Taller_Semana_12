@@ -1,0 +1,29 @@
+// ------------------------------- ESTRUCTURAS DENTRO DE ESTRUCTURAS ----------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+struct direccion
+{
+  char calle_p[100];
+  int numero;
+  char ciudad[40];
+  char cod_pos[6];
+};
+
+struct usuario
+{
+  char nombre[40];
+  char apellido[40];
+  struct direccion dir;
+  char phone[15];
+};
+
+int main()
+{
+  struct usuario usua = { "Pablo", "Piccaso", {"Italia", 69, "Milano", "6969"}, "57840-2344"};
+  printf("Usuario: %s %s\n", usua.nombre, usua.apellido);
+  printf("Direccion:\n Calle Principal: %s, Casa numero: %d\n Ciudad: %s, Cod. Postal: %s\n", usua.dir.calle_p, usua.dir.numero, usua.dir.ciudad, usua.dir.cod_pos);
+  printf("Telefono: %s\n", usua.phone);
+
+  return 0;
+}
