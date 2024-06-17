@@ -1,0 +1,35 @@
+/* ----------------------------------- ESTRUCTURAS DE DATOS --------------------------------------------------
+[1] VECTORES
+[2] MATRICES
+[3] PUNTEROS ➡ ESTRUCTURAS (struct)
+Declarar:
+[1] Dentro del main
+[2] Fuera del main (GLOBALES) CUALQUIER PARTE DEL PROGRAMA
+[3] Antes o depués de las librerias
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct automovil
+{
+  char marca [100];
+  char modelo [100];
+  char color [100];
+  int anio;
+  int km;
+};
+
+int main ()
+{
+  struct automovil auto1; // ➡ (auto1) = sinonimo estructura
+  printf("El tamanio de la estructura del coche es de: %d bytes",sizeof(auto1));
+  
+  return 0;
+  
+}
+
+/* Cuantos Bytes a tener la estructura? ➡ 308 bytes
+int 2 0 4 Bytes dependiendo la máquina  
+" size of" = funcion para saber el peso de una variable
+*/
