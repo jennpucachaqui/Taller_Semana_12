@@ -1,0 +1,123 @@
+/ ---------------------------------------------------DEBER FACTURA CON ESTRUCTURAS------------------------------------------------------
+// CABECERA NEGOCIO: NOMBRE, RUC, DIRECCCION, TELEFONO, CIUDAD,PAIS.
+// CABECERA:  NOMBRE, RUC O N.CEDULA, DIRRECION, TELEFONO
+// DETALLE DE FACTURA: CODIGO, NOMBRE DEL PRODUCTO, CANTIDAD, PRECIO, VALOR TOTAL 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define CONSOLE_WIDTH 80
+#define IVA 0.15
+void printCentered(const char* text);
+struct direccion_neg
+{
+    char calle_p[100];
+    char calle_s[100];  
+};
+
+struct negocio
+{
+    char ruc[20];
+    struct direccion_neg dirneg;
+    char ciudad[40];
+    char pais[40];
+    char phone[15];
+};
+
+struct direccion_per
+{
+    char calle_p[100];
+    int numero;
+    char ciudad[40];
+};
+
+struct usuario
+{
+    char nombre[40];
+    char apellido[40];
+    char cedula[20];
+    struct direccion_per dir;
+    char phone[15];
+    char email[50];
+};
+
+struct membrete
+{
+    char num[40];
+    char fecha[30];
+    char hora[30];
+    char vendedor[30];
+};
+
+struct producto1
+{
+    int cant;
+    char descrip [50];
+    float unit;
+    float subtotal;
+};
+
+struct producto2
+{
+    int canti;
+    char descripi [50];
+    float uniti;
+    float subtotali;
+};
+
+struct calculos
+{
+  float subtotal,iva,total;
+};
+
+int main()
+{
+    struct negocio neg = {"17931992271001", {"Av. 10 de Agosto", "Juan Pablo Sanz"}, "Quito", "Ecuador", "023072372"};
+    struct usuario usua = {"Sandra", "Benitez", "1721167890", {"De Los Cedros Oe2 -", 201, "Quito"}, "0996345981","sandry79@gmail.com"};
+    struct membrete mem = {"000-000-000000001","16-06-2024","16:21:07","ALEX TORRES"};
+    struct producto1 pt1 = {4,"ESFERO BORRABLE",0.87,(4*0.87)};
+    struct producto2 pt2 = {7,"CUADERNO ESPIRAL A4",1.24,(7*1.24)};
+    struct calculos calc = {(4*0.87)+(7*1.24), ((4*0.87)+(7*1.24))*IVA, (4*0.87)+(7*1.24)+((4*0.87)+(7*1.24))*IVA};
+    char buffer[200];
+
+    printf("\e[1;36m-----------------------------------------------------------------------\e[0m\n");
+    printCentered("\e[1;36m\tFACTURA PAPELERIA TIFOSI S.A\e[0m");
+    sprintf(buffer, "RUC: %s", neg.ruc);
+    printCentered(buffer);
+
+    sprintf(buffer, "Direccion: %s y %s", neg.dirneg.calle_p, neg.dirneg.calle_s);
+    printCentered(buffer);
+
+    sprintf(buffer, "Telf: %s               %s - %s", neg.phone, neg.ciudad, neg.pais);
+    printCentered(buffer);
+
+    printf("\e[1;36m-----------------------------------------------------------------------\e[0m\n");
+    
+    printf("\e[1;36mFACTURA: %s\e[0m\n", mem.num);
+    printf("FECHA: %s\t\t\t%s\n", mem.fecha, mem.hora);
+    printf("CLIENTE: %s %s\nCEDULA: %s\nDIRECC: %s %d\t\t%s\n",usua.nombre,usua.apellido,usua.cedula,usua.dir.calle_p,usua.dir.numero,usua.dir.ciudad);
+    printf("TLFS: %s\nCORREO: %s\n",usua.phone,usua.email);
+    printf("VENDEDOR: %s\n",mem.vendedor);
+
+    printf("\e[1;34m-----------------------------------------------------------------------\e[0m\n");
+    printf("\e[1;34mUNDS\tDESCRIPCION\t\tUNITARIO\t\tSUBTOTAL\n\e[0m");
+    printf("\e[1;34m-----------------------------------------------------------------------\e[0m\n");
+    printf(" %d\t%s\t\t  %.2f\t\t\t  %.2f\n",pt1.cant,pt1.descrip,pt1.unit,pt1.subtotal);
+    printf(" %d\t%s\t  %.2f\t\t\t  %.2f\n",pt2.canti,pt2.descripi,pt2.uniti,pt2.subtotali);
+    printf("\n");
+    printf("\n");
+    printf("\e[1;34m-----------------------------------------------------------------------\e[0m\n");
+    printf("\e[0;36m\t\t\t\t SUBTOTAL:\t\t  %.2f\n\e[0m",calc.subtotal);
+    printf("\e[0;36m\t\t\t\t I.V.A (15%%):\t\t   %.2f\n\e[0m",calc.iva);
+    printf("\n");
+    printf("\e[1;33m\t\t\t\t TOTAL A PAGAR:\t\t  %.2f\n\e[0m",calc.total);
+    return 0;
+}
+
+
+
+void printCentered(const char* text) 
+{
+    int pad = (CONSOLE_WIDTH - strlen(text)) / 2;
+    printf("%*s%s\n", pad, "", text);
+}
