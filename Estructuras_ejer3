@@ -1,0 +1,21 @@
+// ------------------------------- SABER MANIPULAR LAS ESTRUCTURAS --------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+struct automovil
+{
+  char marca [100];
+  char modelo [100];
+  char color [100];
+  int anio;
+  int km;
+};
+
+int main ()
+{
+  struct automovil auto1 = {"Audi", "TT", "Verde", 2011,200};
+  printf("Mi auto es de marca %s - El modelo es  %s - El color es  %s - El anio del modelo es %d y los km recorridos son %d",auto1.marca,auto1.modelo,auto1.color,auto1.anio,auto1.km);
+  
+  return 0;
+  
+}
