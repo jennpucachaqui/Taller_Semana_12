@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main ()
+{
+  int num = 10;
+  int *prt, **pprt;
+  prt = &num;
+  //**pprt = &prt; ➡ Esto asigna la dirección de memoria almacenada en prt al puntero a puntero pprt.
+
+  printf ("Los valores son %d - %p",num,&prt);
+
+  return 0;
+  
+}
