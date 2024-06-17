@@ -1,0 +1,62 @@
+// CORRECCION DEL EXAMEN
+
+#include <stdio.h>
+int main()
+{
+    char nombre[25]; // declaro el conteniudo del vector, hasta cuantos caracterres puede tener 1 nombre
+    float m1[7][8], m2[7];
+
+    // desarrollo
+    int i, j;
+    float acu1, acu2, prom;
+    for (i = 0; i < 7; i++)
+    {
+        printf("Ingrese el nombre [%d]: \n", i + 1);
+        gets(nombre[i]);
+        
+
+        for (j = 0; j < 7; j++)
+        {
+            printf("Nota Posicion [%d][%d]:\n", i, j);
+            scanf("%f", m1[i][j]);
+            if (j < 4)
+            {
+                acu1 += m1[i][j] * 0.15;
+            }
+            else
+            {
+                acu2 += m1[i][j] * 0.20;
+            }
+            if (j == 7)
+            {
+                m1[i][j] = acu1 + acu2;
+            }
+        }
+        prom += m1[i][j];
+    }
+    // DESPLEGAR
+    printf("NOMBRE\t\tNOTAS DE EXAMENES(PORCENTAJES)\t\t\tPROMEDIO\t\tDESVIACION\n\n");
+    for (i = 0; i < 7; i++)
+    {
+        printf("%s", nombre[i]);
+
+        for (j = 0; i < 8; j++)
+        {
+            if (j < 7)
+            {
+                printf("%.0f\t", m1[i][j]);
+            }
+            else
+            {
+                m1[i][j]= prom-m1[i][j];
+            }
+            
+        }
+        printf("\n");
+        printf("Media de la clase: %.2f", m1[i][j]);
+
+    }
+    printf("\n");
+
+    return 0;
+}
